@@ -7,24 +7,29 @@ $fnameValue = "";
 $errorMesage = "";
 $successMesage = "";
 
+include('connection.php');
+   
+
+//create in instance of class Connection
+$connection = new Connection();
+
+
+//call the selectDatabase method
+$connection->selectDatabase('crudPoo6');
+
+    //include the client file
+include('client.php');
 if($_SERVER['REQUEST_METHOD']=='GET'){
 
     $id = $_GET['id'];
 
-    include("database.php");
-    
-
-    $sql = "SELECT firstname, lastname,email FROM testDb.Clients WHERE id='$id'";
-$result = mysqli_query($conn, $sql);
-if (mysqli_num_rows($result) > 0) {
-// output data of each row
-$row = mysqli_fetch_assoc($result);
+//call the staticbselectClientById method and store the result of the method in $row
+$row=Client::selectClientById('Clients',$connection->conn,$id);
 
 $emailValue = $row["email"];
 $lnameValue = $row["lastname"];
 $fnameValue = $row["firstname"];
 
-}
 }
 
 else if(isset($_POST["submit"])){
@@ -40,22 +45,13 @@ else if(isset($_POST["submit"])){
 
     }else{
 
-        include("database.php");
+        
+        //create a new instance of client ($client) with inputs values
+        $client = new Client($fnameValue,$lnameValue,$emailValue,'');
 
-        $sql = "UPDATE Clients SET lastname='$lnameValue',firstname='$fnameValue',email='$emailValue' WHERE id=$_GET[id]";
-        if (mysqli_query($conn, $sql)) {
-            $successMesage= "New record updated successfully";
-$emailValue = "";
-$lnameValue = "";
-$fnameValue = "";
-header("Location:read.php");
-         echo "Record updated successfully";
-        } else {
-        echo "Error updating record: " . mysqli_error($conn);
-        }
-
-       
-      
+        //call the static updateClient method and give $client in the parameters
+        Client::updateClient($client,'Clients',$connection->conn, $_GET['id']);
+            
     }
 }
 
