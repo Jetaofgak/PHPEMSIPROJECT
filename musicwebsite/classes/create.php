@@ -1,5 +1,14 @@
 <?php
+//include connection file
+include('connection.php');
+   
 
+//create in instance of class Connection
+$connection = new Connection();
+
+
+//call the selectDatabase method
+$connection->selectDatabase('crudPoo6');
 $emailValue = "";
 $lnameValue = "";
 $fnameValue = "";
@@ -12,6 +21,7 @@ if(isset($_POST["submit"])){
     $lnameValue = $_POST["lastName"];
     $fnameValue = $_POST["firstName"];
     $passwordValue = $_POST["password"];
+    $idCityValue=$_POST["cities"];
 
     if(empty($emailValue) || empty($fnameValue) || empty($lnameValue) || empty($passwordValue)){
 
@@ -22,23 +32,26 @@ if(isset($_POST["submit"])){
     }else if(preg_match("/[A-Z]+/", $passwordValue)==0){
         $errorMesage = "password must contains  at least one capital letter!";
     }else{
+       
+    
+    //include the client file
+    include('client.php');
 
-        include("database.php");
+    //create new instance of client class with the values of the inputs
+    $client = new Client($fnameValue,$lnameValue,$emailValue,$passwordValue,$idCityValue);
 
-        // hachage du mot de passe
-$password = password_hash($passwordValue, PASSWORD_DEFAULT);
-$sql = "INSERT INTO testDb.Clients (firstname, lastname, email,password)
-VALUES ('$fnameValue', '$lnameValue', '$emailValue','$password')";
-if (mysqli_query($conn, $sql)) {
-$successMesage= "New record created successfully";
+//call the insertClient method
+$client->insertClient('Clients',$connection->conn);
+
+//give the $successMesage the value of the static $successMsg of the class
+$successMesage = Client::$successMsg;
+
+//give the $errorMesage the value of the static $errorMsg of the class
+$errorMesage = Client::$errorMsg;
+
 $emailValue = "";
 $lnameValue = "";
-$fnameValue = "";
-} else {
-  $errorMesage ="Error: " . $sql . "<br>" . mysqli_error($conn);
-}
-
-       
+$fnameValue = "";   
       
     }
 }
@@ -90,6 +103,22 @@ $fnameValue = "";
                         <input value=" <?php echo $emailValue ?>" class="form-control" type="email" id="email" name="email">
                     </div>
             </div>
+            <div class="row mb-3">
+            <label class="col-form-label col-sm-1" for="cities">Cities:</label>
+            <div class="col-sm-6">
+                <select name='cities' class="form-select">
+                <option selected>Select your city</option>
+                    <?php
+                        include('city.php');
+                        $cities=City::selectAllcities('Cities',$connection->conn);
+                        foreach($cities as $city){
+                                echo "<option value='$city[id]' >$city[name]</option>";
+
+                        }
+                    ?>
+                </select>
+                </div>
+   </div>
             <div class="row mb-3 ">
                     <label class="col-form-label col-sm-1" for="password">Password:</label>
                     <div class="col-sm-6">
@@ -122,3 +151,4 @@ echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
 
 </body>
 </html>
+
