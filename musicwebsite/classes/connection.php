@@ -2,8 +2,8 @@
 
 class Connection{
 
-private $servername="localhost:3308";
-private $username="amine";
+private $servername="localhost:3306";
+private $username="root";
 private $password="";
 public $conn;
 
