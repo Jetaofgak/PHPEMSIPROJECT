@@ -7,28 +7,27 @@ include('connection.php');
 $connection = new Connection();
 
 //call the createDatabase methods to create database "chap4Db"
-$connection->createDatabase('crudPoo6');
+$connection->createDatabase('MUSIC_PHP_PROJ');
 $query0 = "
-CREATE TABLE Cities (
-    id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(30) NOT NULL
+CREATE TABLE Users (
+    Users_id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    Users_FullName VARCHAR(100) NOT NULL,
+    Users_Email VARCHAR(255) NOT NULL,
+    Users_Password VARCHAR(255) NOT NULL   
     )
 ";
 $query = "
-CREATE TABLE Clients (
-id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-firstname VARCHAR(30) NOT NULL,
-lastname VARCHAR(30) NOT NULL,
-email VARCHAR(50) UNIQUE,
-password VARCHAR(80),
-reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-idCity INT(6) UNSIGNED NOT NULL,
-FOREIGN KEY (idCity) REFERENCES Cities(id)
+CREATE TABLE Song (
+Song_id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+Song_Name VARCHAR(255) NOT NULL,
+Song_Lenght_Second INT NOT NULL,
+Song_Artist VARCHAR(255) NOT NULL,
+Song_Band VARCHAR(255)
 )
 ";
 
 //call the selectDatabase method to select the chap4Db
-$connection->selectDatabase('crudPoo6');
+$connection->selectDatabase('Users');
 
 //call the createTable method to create table with the $query
 $connection->createTable($query0);
