@@ -44,6 +44,19 @@ playlist_id INT,
     FOREIGN KEY (Song_id) REFERENCES Song(Song_id)
 )
 ";
+
+$query3="
+CREATE TABLE Artist(
+    Artist_id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    Artist_Name VARCHAR(255) NOT NULL
+)";
+
+$query4="
+ALTER TABLE musique
+ADD COLUMN Artiste_id INT, 
+ADD CONSTRAINT fk_musique_artist
+FOREIGN KEY (Artiste_id)
+REFERENCES Artist(Artist_id)"
 //call the selectDatabase method to select the chap4Db
 $connection->selectDatabase('Users');
 
@@ -52,6 +65,8 @@ $connection->createTable($query0);
 $connection->createTable($query);
 $connection->createTable($query1);
 $connection->createTable($query2);
+$connection->createTable($query3);
+$connection->createTable($query4);
 
 
 ?>
