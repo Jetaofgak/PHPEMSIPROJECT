@@ -29,7 +29,7 @@ Song_Artist VARCHAR(255) NOT NULL
 
 $query1 = "
 CREATE TABLE PLAYLIST (
-Users_id INT,
+Users_id INT(6) UNSIGNED,
 playlist_id INT AUTO_INCREMENT PRIMARY KEY,
 playlist_name VARCHAR(255) NOT NULL,
 FOREIGN KEY (Users_id) REFERENCES users(Users_id)
@@ -38,7 +38,7 @@ FOREIGN KEY (Users_id) REFERENCES users(Users_id)
 $query2 = "
 CREATE TABLE PLAYLIST_SONGS (
 playlist_id INT,
-    song_id INT,
+    song_id INT(6) UNSIGNED,
     PRIMARY KEY (playlist_id, song_id),
     FOREIGN KEY (playlist_id) REFERENCES playlists(playlist_id),
     FOREIGN KEY (song_id) REFERENCES songs(song_id)
