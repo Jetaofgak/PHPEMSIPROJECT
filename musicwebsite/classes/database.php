@@ -50,6 +50,8 @@ $connection->selectDatabase('Users');
 //call the createTable method to create table with the $query
 $connection->createTable($query0);
 $connection->createTable($query);
+$connection->createTable($query1);
+$connection->createTable($query2);
 
 
 ?>
