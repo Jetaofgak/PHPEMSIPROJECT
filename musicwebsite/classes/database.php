@@ -40,7 +40,7 @@ CREATE TABLE PLAYLIST_SONGS (
 playlist_id INT,
     song_id INT(6) UNSIGNED,
     PRIMARY KEY (playlist_id, song_id),
-    FOREIGN KEY (playlist_id) REFERENCES playlists(playlist_id),
+    FOREIGN KEY (playlist_id) REFERENCES Playlist(playlist_id),
     FOREIGN KEY (Song_id) REFERENCES Song(Song_id)
 )
 ";
