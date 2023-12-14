@@ -41,7 +41,7 @@ playlist_id INT,
     song_id INT(6) UNSIGNED,
     PRIMARY KEY (playlist_id, song_id),
     FOREIGN KEY (playlist_id) REFERENCES playlists(playlist_id),
-    FOREIGN KEY (song_id) REFERENCES songs(song_id)
+    FOREIGN KEY (Song_id) REFERENCES Song(Song_id)
 )
 ";
 //call the selectDatabase method to select the chap4Db
