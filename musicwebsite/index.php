@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
     $password = $_POST["password"];
 
     // Create a new User instance
-    $newUser = new User($name, $email, $password);
+    $newUser = new client($name, $email, $password);
 
     // You might want to add more validation and error handling here
 
