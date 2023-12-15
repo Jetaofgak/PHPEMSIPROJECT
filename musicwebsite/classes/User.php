@@ -40,5 +40,6 @@ class User {
         else {
             self::$errorMsg ="Error: " . $sql . "<br>" . mysqli_error($conn);
         }
+    }
 }
 ?>
