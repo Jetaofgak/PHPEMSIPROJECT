@@ -1,8 +1,8 @@
 <?php
 
 $emailValue = "";
-$lnameValue = "";
-$fnameValue = "";
+$unameValue = "";
+
 
 $errorMesage = "";
 $successMesage = "";
@@ -15,10 +15,10 @@ $connection = new Connection();
 
 
 //call the selectDatabase method
-$connection->selectDatabase('crudPoo6');
+$connection->selectDatabase('MUSIC_PHP_PROJ');
 
     //include the client file
-include('client.php');
+include('User.php');
 if($_SERVER['REQUEST_METHOD']=='GET'){
 
     $id = $_GET['id'];
