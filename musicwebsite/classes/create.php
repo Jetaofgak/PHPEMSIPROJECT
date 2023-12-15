@@ -8,22 +8,19 @@ $connection = new Connection();
 
 
 //call the selectDatabase method
-$connection->selectDatabase('crudPoo6');
+$connection->selectDatabase('MUSIC_PHP_PROJ');
+$unameValue = "";
 $emailValue = "";
-$lnameValue = "";
-$fnameValue = "";
 $passwordValue = "";
 $errorMesage = "";
 $successMesage = "";
 if(isset($_POST["submit"])){
 
     $emailValue = $_POST["email"];
-    $lnameValue = $_POST["lastName"];
-    $fnameValue = $_POST["firstName"];
+    $unameValue = $_POST["userName"];
     $passwordValue = $_POST["password"];
-    $idCityValue=$_POST["cities"];
 
-    if(empty($emailValue) || empty($fnameValue) || empty($lnameValue) || empty($passwordValue)){
+    if(empty($emailValue) || empty($unameValue)  || empty($passwordValue)){
 
             $errorMesage = "all fileds must be filed out!";
 
@@ -35,10 +32,10 @@ if(isset($_POST["submit"])){
        
     
     //include the client file
-    include('client.php');
+    include('User.php');
 
     //create new instance of client class with the values of the inputs
-    $client = new Client($fnameValue,$lnameValue,$emailValue,$passwordValue,$idCityValue);
+    $client = new Client($emailValue,$unameValue,$passwordValue);
 
 //call the insertClient method
 $client->insertClient('Clients',$connection->conn);
