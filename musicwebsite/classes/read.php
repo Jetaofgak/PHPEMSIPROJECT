@@ -1,5 +1,4 @@
 <?php
-include('city.php');
 //include connection file
 include('connection.php');
    
@@ -9,10 +8,10 @@ $connection = new Connection();
 
 
 //call the selectDatabase method
-$connection->selectDatabase('crudPoo6'); 
+$connection->selectDatabase('MUSIC_PHP_PROJ'); 
 
  //include the client file
- include('client.php');
+ include('');
 
  
   //call the static selectAllClients method and store the result of the method in $clients
