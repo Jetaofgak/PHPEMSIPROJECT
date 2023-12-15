@@ -7,9 +7,9 @@ if($_SERVER['REQUEST_METHOD']=='GET'){
 include('connection.php');
 
 $connection = new Connection();
-$connection->selectDatabase('crudPoo6');
+$connection->selectDatabase('MUSIC_PHP_PROJ');
 
-include('client.php');
+include('User.php');
 
 Client::deleteClient('Clients',$connection->conn,$id);
 
