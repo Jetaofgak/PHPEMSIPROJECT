@@ -6,8 +6,8 @@ include_once 'classes/Playlist.php';
 include_once 'classes/Artist.php';
 
 // Create users
-$user1 = new User('1', 'User1');
-$user2 = new User('2', 'User2');
+$user1 = new User('User1','gg@gmail.com','123');
+$user2 = new User('User2','gg2@gmail.com','1232');
 
 // Create songs
 $song1 = new Song('1', 'Song1', 'Artist1', 200);
