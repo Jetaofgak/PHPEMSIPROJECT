@@ -6,9 +6,11 @@ class User {
     private $password;
     private $playlists = [];
 
-    public function __construct($userId, $username) {
-        $this->userId = $userId;
+    public function __construct($username,$email,$password) {
+        
         $this->username = $username;
+        $this->email = $email;
+        $this->password = $password;
     }
 
     public function getUserId() {
