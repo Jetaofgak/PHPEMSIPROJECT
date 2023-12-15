@@ -1,10 +1,10 @@
 <?php
 
 class Connection{
-
+//The connection work on portable pc, do not change. No acces denied. Donc connecter i suppose.
 private $servername="127.0.0.1";
-private $username="root@localhost";
-private $password="password"; //J'ESSAYE PASSWORD ASKIP CA MARCHE
+private $username="root";
+private $password=""; 
 public $conn;
 
 public function __construct(){
