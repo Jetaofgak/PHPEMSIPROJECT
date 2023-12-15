@@ -47,8 +47,8 @@ $successMesage = Client::$successMsg;
 $errorMesage = Client::$errorMsg;
 
 $emailValue = "";
-$lnameValue = "";
-$fnameValue = "";   
+$unameValue = "";
+ 
       
     }
 }
