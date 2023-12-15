@@ -1,52 +1,27 @@
 <?php
+// Include your classes
 include_once 'classes/User.php';
 include_once 'classes/Song.php';
 include_once 'classes/Album.php';
 include_once 'classes/Playlist.php';
 include_once 'classes/Artist.php';
 
-// Create users
-$user1 = new User('User1','gg@gmail.com','123');
-$user2 = new User('User2','gg2@gmail.com','1232');
+// Your existing instances and associations...
 
-// Create songs
-$song1 = new Song('1', 'Song1', 'Artist1', 200);
-$song2 = new Song('2', 'Song2', 'Artist2', 180);
+// Handle form submission
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
+    // Retrieve form data
+    $name = $_POST["name"];
+    $email = $_POST["email"];
+    $password = $_POST["password"];
 
-// Create albums
-$album1 = new Album('1', 'Album1', 'Artist1', 2022);
-$album2 = new Album('2', 'Album2', 'Artist2', 2020);
+    // Create a new User instance
+    $newUser = new User($name, $email, $password);
 
-// Create playlists
-$playlist1 = new Playlist('1', 'Playlist1', $user1);
-$playlist2 = new Playlist('2', 'Playlist2', $user2);
+    // You might want to add more validation and error handling here
 
-// Create artists
-$artist1 = new Artist('1', 'Artist1');
-$artist2 = new Artist('2', 'Artist2');
-
-// Associate entities
-$user1->addPlaylist($playlist1);
-$user2->addPlaylist($playlist2);
-
-$playlist1->addSong($song1);
-$playlist2->addSong($song2);
-
-$artist1->addAlbum($album1);
-$artist2->addAlbum($album2);
-
-// Display information (you'd typically use a template engine for this in a real project)
-echo "User: {$user1->getUsername()}\n";
-echo "Playlist: {$playlist1->getName()}\n";
-echo "Songs in Playlist:\n";
-foreach ($playlist1->getSongs() as $song) {
-    echo "- {$song->getTitle()} by {$song->getArtist()}\n";
-}
-
-echo "\nArtist: {$artist1->getName()}\n";
-echo "Albums by Artist:\n";
-foreach ($artist1->getAlbums() as $album) {
-    echo "- {$album->getTitle()} ({$album->getReleaseYear()})\n";
+    // Display a success message or redirect the user to another page
+    echo "Signup successful!";
 }
 ?>
 <!DOCTYPE html>
