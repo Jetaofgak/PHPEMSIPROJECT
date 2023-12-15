@@ -4,7 +4,7 @@ class Connection{
 
 private $servername="127.0.0.1";
 private $username="root@localhost";
-private $password="";
+private $password="password"; //J'ESSAYE PASSWORD ASKIP CA MARCHE
 public $conn;
 
 public function __construct(){
