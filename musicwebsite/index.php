@@ -4,7 +4,7 @@ include_once 'classes/Song.php';
 include_once 'classes/Album.php';
 include_once 'classes/Playlist.php';
 include_once 'classes/Artist.php';
-include_once 'connection.php';  // Assuming your connection file is named connection.php
+include_once 'classes/connection.php';  // Assuming your connection file is named connection.php
 
 $connection = new Connection();
 $connection->selectDatabase('MUSIC_PHP_PROJ');
