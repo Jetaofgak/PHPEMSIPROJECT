@@ -1,31 +1,34 @@
 <?php
-// Include your classes
-include_once 'classes/User.php';
+include_once 'classes/Client.php';
 include_once 'classes/Song.php';
 include_once 'classes/Album.php';
 include_once 'classes/Playlist.php';
 include_once 'classes/Artist.php';
+include_once 'connection.php';  // Assuming your connection file is named connection.php
 
-// Your existing instances and associations...
+$connection = new Connection();
+$connection->selectDatabase('MUSIC_PHP_PROJ');
 
 // Handle form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
-    // Retrieve form data
     $name = $_POST["name"];
     $email = $_POST["email"];
     $password = $_POST["password"];
 
-    // Create a new User instance
-    $newUser = new Client($name, $email, $password);
+    // Create a new Client instance
+    $newClient = new Client($name, $email, $password);
 
-    // You might want to add more validation and error handling here
+    // Insert the new client into the database
+    $newClient->insertClient('Users', $connection->conn);
 
     // Display a success message or redirect the user to another page
     echo "Signup successful!";
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -38,15 +41,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
     <!-- Main css -->
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
 
     <div class="main">
 
         <section class="signup">
-            <!-- <img src="images/signup-bg.jpg" alt=""> -->
             <div class="container">
                 <div class="signup-content">
-                    <form method="POST" id="signup-form" class="signup-form">
+                    <form method="POST" action="index.php" id="signup-form" class="signup-form">
                         <h2 class="form-title">Create account</h2>
                         <div class="form-group">
                             <input type="text" class="form-input" name="name" id="name" placeholder="Your Name"/>
@@ -55,22 +58,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
                             <input type="email" class="form-input" name="email" id="email" placeholder="Your Email"/>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-input" name="password" id="password" placeholder="Password"/>
-                            <span toggle="#password" class="zmdi zmdi-eye field-icon toggle-password"></span>
-                        </div>
-                        <div class="form-group">
-                            <input type="password" class="form-input" name="re_password" id="re_password" placeholder="Repeat your password"/>
-                        </div>
-                        <div class="form-group">
-                            <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
-                            <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in  <a href="#" class="term-service">Terms of service</a></label>
+                            <input type="password" class="form-input" name="password" id="password" placeholder="Password"/>
                         </div>
                         <div class="form-group">
                             <input type="submit" name="submit" id="submit" class="form-submit" value="Sign up"/>
                         </div>
                     </form>
                     <p class="loginhere">
-                        Have already an account ? <a href="#" class="loginhere-link">Login here</a>
+                        Have already an account? <a href="#" class="loginhere-link">Login here</a>
                     </p>
                 </div>
             </div>
@@ -81,5 +76,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
     <!-- JS -->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="js/main.js"></script>
-</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</body>
 </html>
