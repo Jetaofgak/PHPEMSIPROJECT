@@ -83,15 +83,9 @@ $unameValue = "";
         <br>
         <form method="post">
             <div class="row mb-3">
-                    <label class="col-form-label col-sm-1" for="fname">First Name:</label>
-                    <div class="col-sm-6">
-                        <input value="<?php echo $fnameValue ?>" class="form-control" type="text" id="fname" name="firstName">
-                    </div>
-            </div>
-            <div class="row mb-3">
                     <label class="col-form-label col-sm-1" for="lname">Last Name:</label>
                     <div class="col-sm-6">
-                        <input  value="<?php echo $lnameValue ?>" class="form-control" type="text" id="lname" name="lastName">
+                        <input  value="<?php echo $unameValue ?>" class="form-control" type="text" id="lname" name="lastName">
                     </div>
             </div>
             <div class="row mb-3 ">
@@ -100,21 +94,6 @@ $unameValue = "";
                         <input value=" <?php echo $emailValue ?>" class="form-control" type="email" id="email" name="email">
                     </div>
             </div>
-            <div class="row mb-3">
-            <label class="col-form-label col-sm-1" for="cities">Cities:</label>
-            <div class="col-sm-6">
-                <select name='cities' class="form-select">
-                <option selected>Select your city</option>
-                    <?php
-                        include('city.php');
-                        $cities=City::selectAllcities('Cities',$connection->conn);
-                        foreach($cities as $city){
-                                echo "<option value='$city[id]' >$city[name]</option>";
-
-                        }
-                    ?>
-                </select>
-                </div>
    </div>
             <div class="row mb-3 ">
                     <label class="col-form-label col-sm-1" for="password">Password:</label>
