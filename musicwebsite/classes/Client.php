@@ -6,6 +6,7 @@ public $id;
 public $username;
 public $email;
 public $password;
+public $unhshpassword;
 
 
 
@@ -21,6 +22,7 @@ public function __construct($username,$email,$password){
     $this->username = $username;
     $this->email = $email;
     $this->password = password_hash($password,PASSWORD_DEFAULT);
+    $this->unhshpassword = $password;
   
 }
 
@@ -67,6 +69,25 @@ static function selectClientById($tableName,$conn,$id){
     
     }
     return $row;
+}
+
+public function verifyClientCreds($conn)
+{
+    $sql = "SELECT username,email FROM 'Users'";
+    $resultToCheck = mysqli_query($conn, $sql);
+    if (mysqli_num_rows($resultToCheck) > 0) {
+        // output data of each row
+        $row = mysqli_fetch_assoc($resultToCheck);
+        for($i = 0;$i<mysqli_num_rows($resultToCheck);$i++)
+        {
+            if($row['Users_Email'] == $this->email && password_verify($this->unhshpassword,$row['Users_Password']))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }
 
 static function updateClient($client,$tableName,$conn,$id){
