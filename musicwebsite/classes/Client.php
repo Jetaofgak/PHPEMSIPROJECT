@@ -27,7 +27,7 @@ public function __construct($username,$email,$password){
 public function insertClient($tableName,$conn){
 
 //insert a client in the database, and give a message to $successMsg and $errorMsg
-$sql = "INSERT INTO $tableName (username,email,password)
+$sql = "INSERT INTO $tableName (Users_FullName,Users_Email,Users_Password)
 VALUES ('$this->username', '$this->email','$this->password')";
 if (mysqli_query($conn, $sql)) {
 self::$successMsg= "New record created successfully";
@@ -72,7 +72,7 @@ static function selectClientById($tableName,$conn,$id){
 static function updateClient($client,$tableName,$conn,$id){
     //update a client of $id, with the values of $client in parameter
     //and send the user to read.php
-    $sql = "UPDATE $tableName SET username='$client->username',email='$client->email' WHERE id='$id'";
+    $sql = "UPDATE $tableName SET Users_FullName='$client->username',Users_Email='$client->email' WHERE Users_Id='$id'";
         if (mysqli_query($conn, $sql)) {
         self::$successMsg= "New record updated successfully";
 header("Location:read.php");
