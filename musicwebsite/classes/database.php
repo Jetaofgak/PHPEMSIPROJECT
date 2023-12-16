@@ -58,7 +58,7 @@ ADD CONSTRAINT fk_musique_artist
 FOREIGN KEY (Artiste_id)
 REFERENCES Artist(Artist_id)"
 //call the selectDatabase method to select the chap4Db
-$connection->selectDatabase('Users');
+$connection->selectDatabase('MUSIC_PHP_PROJ');
 
 //call the createTable method to create table with the $query
 $connection->createTable($query0);
