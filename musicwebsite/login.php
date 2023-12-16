@@ -1,30 +1,22 @@
 <?php
 include_once 'classes/Client.php';
-include_once 'classes/Song.php';
-include_once 'classes/Album.php';
-include_once 'classes/Playlist.php';
-include_once 'classes/Artist.php';
-include_once 'classes/connection.php';  // Assuming your connection file is named connection.php
+include_once 'classes/connection.php';
 
 $connection = new Connection();
 $connection->selectDatabase('MUSIC_PHP_PROJ');
 
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST["email"];
     $password = $_POST["password"];
-    $name == "irre";
-    $clientBool = new Client($name,$email,$password);
+    $name = "irre"; // Fix the typo here
+    $clientBool = new Client($name, $email, $password);
 
-    if($clientBool->verifyClientCreds($connection->conn))
-    {
+    if ($clientBool->verifyClientCreds($connection->conn)) {
         echo "GG WP CONNECTION successful!";
-        
+        // Display a success message or redirect the user to another page
+    } else {
+        echo "Invalid credentials!";
     }
-
-    
-
-    // Display a success message or redirect the user to another page
-    
 }
 ?>
 
