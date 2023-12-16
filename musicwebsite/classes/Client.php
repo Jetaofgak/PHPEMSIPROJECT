@@ -27,7 +27,7 @@ public function __construct($username,$email,$password){
 public function insertClient($tableName,$conn){
 
 //insert a client in the database, and give a message to $successMsg and $errorMsg
-$sql = "INSERT INTO $tableName (username,email,password,)
+$sql = "INSERT INTO $tableName (username,email,password)
 VALUES ('$this->username', '$this->email','$this->password')";
 if (mysqli_query($conn, $sql)) {
 self::$successMsg= "New record created successfully";
