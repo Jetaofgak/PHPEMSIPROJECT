@@ -2,22 +2,33 @@
 include_once 'classes/Client.php';
 include_once 'classes/connection.php';
 
-$connection = new Connection();
-$connection->selectDatabase('MUSIC_PHP_PROJ');
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = $_POST["email"];
-    $password = $_POST["password"];
-    $name = "irre"; // Fix the typo here
-    $clientBool = new Client($name, $email, $password);
 
-    if ($clientBool->verifyClientCreds($connection->conn)) {
-        echo "GG WP CONNECTION successful!";
-        // Display a success message or redirect the user to another page
-    } else {
-        echo "Invalid credentials!";
+
+    $connection = new Connection();
+    $connection->selectDatabase('MUSIC_PHP_PROJ');
+    $url = "";
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $email = $_POST["email"];
+        $password = $_POST["password"];
+        $name = "irre"; // Fix the typo here
+        $clientBool = new Client($name, $email, $password);
+
+        if ($clientBool->verifyClientCreds($connection->conn)) {
+            echo "OUIIIII";
+            $url = "https://www.google.com";
+            return $url;
+        } else {
+            echo "NOOOOON";
+            $url = "https://www.amazon.com";
+            return $url;
+            
+        }
     }
-}
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -43,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <section class="signup">
             <div class="container">
                 <div class="signup-content">
-                    <form method="POST" action="index.php" id="signup-form" class="signup-form">
+                    <form method="POST" action="login.php" id="signup-form" class="signup-form">
                         <h2 class="form-title">Log into your account</h2>
                         <div class="form-group">
                             <input type="email" class="form-input" name="email" id="email" placeholder="Your Email"/>
@@ -55,9 +66,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <input type="submit" name="submit" id="submit" class="form-submit" value="Sign in"/>
                         </div>
                     </form>
-                    <p class="loginhere">
-                        Have already an account? <a href="#" class="loginhere-link">Login here</a>
-                    </p>
                 </div>
             </div>
         </section>
