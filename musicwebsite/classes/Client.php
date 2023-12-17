@@ -73,7 +73,7 @@ static function selectClientById($tableName,$conn,$id){
 
 public function verifyClientCreds($conn)
 {
-    $sql = "SELECT username,email FROM 'Users'";
+    $sql = "SELECT username,email FROM Users";
     $resultToCheck = mysqli_query($conn, $sql);
     if (mysqli_num_rows($resultToCheck) > 0) {
         // output data of each row
