@@ -17,12 +17,31 @@ include_once 'classes/connection.php';
 
         if ($clientBool->verifyClientCreds($connection->conn)) {
             echo "OUIIIII";
-            $url = "https://www.google.com";
-            return $url;
+            echo "<!DOCTYPE html>";
+            echo "<html lang='en'>";
+            echo "<head>";
+            echo "<meta charset='UTF-8'>";
+            echo "<meta http-equiv='refresh' content=1;url='mainpage.php'>";
+            echo "<title>Redirection automatique</title>";
+            echo "</head>";
+            echo "<body>";
+            echo "</body>";
+            echo "</html>";
+            
+            
         } else {
-            echo "NOOOOON";
-            $url = "https://www.amazon.com";
-            return $url;
+            
+            echo "<!DOCTYPE html>";
+            echo "<html lang='en'>";
+            echo "<head>";
+            echo "<meta charset='UTF-8'>";
+            echo "<title>Redirection automatique</title>";
+            echo "</head>";
+            echo "<body>";
+            echo "<p style='color: black'>INFORMATION ERRONEE,VEUILLEZ REESSAYER</p>";
+            echo "</body>";
+            echo "</html>";
+            
             
         }
     }
