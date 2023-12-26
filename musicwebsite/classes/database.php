@@ -52,7 +52,7 @@ CREATE TABLE Artist(
 )";
 
 $query4="
-ALTER TABLE musique
+ALTER TABLE SONG
 ADD COLUMN Artiste_id INT, 
 ADD CONSTRAINT fk_musique_artist
 FOREIGN KEY (Artiste_id)
