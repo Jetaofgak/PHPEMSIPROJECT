@@ -16,7 +16,7 @@ include_once 'classes/connection.php';
         $clientBool = new Client($name, $email, $password);
 
         if ($clientBool->verifyClientCreds($connection->conn)) {
-            echo "OUIIIII";
+            echo "Connexion reussi, veuillez patienter.";
             echo "<!DOCTYPE html>";
             echo "<html lang='en'>";
             echo "<head>";
