@@ -324,3 +324,22 @@ ul.hide1-4
     background: black;
     cursor: pointer;
   }
+  #playlist {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 500px; /* Adjust this value to move the playlist down */
+}
+
+.song {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin: 10px;
+    background-color: #f9f9f9;
+    cursor: grab;
+    user-select: none;
+}
+
+.song:hover {
+    background-color: #ececec;
+}
