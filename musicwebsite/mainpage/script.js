@@ -20,3 +20,35 @@ function myfunction1(){
     if(String(userinput).toLowerCase()=="we got it from here".toLowerCase()) location.assign('vinyl5.html');
 
   }
+// ...
+
+function createSongElement(song) {
+  var songElement = document.createElement('div');
+  songElement.className = 'song';
+
+  var playButton = document.createElement('button');
+  playButton.textContent = 'Play';
+  playButton.addEventListener('click', function () {
+      // Update the audio source and play
+      playSelectedSong(song.filePath);
+  });
+
+  var addButton = document.createElement('button');
+  addButton.textContent = 'Add';
+  addButton.addEventListener('click', function () {
+      // Implement add logic using song.filePath
+  });
+
+  var titleElement = document.createElement('p');
+  titleElement.textContent = 'Title: ' + song.title;
+
+  var artistElement = document.createElement('p');
+  artistElement.textContent = 'Artist: ' + song.artist;
+
+  songElement.appendChild(titleElement);
+  songElement.appendChild(artistElement);
+  songElement.appendChild(playButton);
+  songElement.appendChild(addButton);
+
+  return songElement;
+}
